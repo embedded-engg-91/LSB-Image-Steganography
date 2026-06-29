@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "encode.h"
+#include "decode.h"
 #include "types.h"
+#include "common.h"
 
 OperationType check_operation_type(char *);
 
@@ -9,14 +11,12 @@ int main(int argc, char *argv[]) // int argc, char *argv[] array of ptrs
 {
     // read inputs from user(option, source_file, secret_file)with extn
 
-    // step1 -> check  check_operation_type(option) is returned _encode or e_decode
     OperationType res = check_operation_type(argv[1]); // check this
     // e_encode
     if (res == e_encode)
     {
         // EncodeInfo encInfo;
-        EncodeInfo encInfo; // created a struct var
-        // step 1 -> call read_and_validate_encode_args(&encInfo inputs)
+        EncodeInfo encInfo;                                             // created a struct var
         if (read_and_validate_encode_args(argv, &encInfo) == e_success) // in first argu need to pass entire args list
         {
             if (do_encoding(&encInfo) == e_success)
@@ -33,10 +33,44 @@ int main(int argc, char *argv[]) // int argc, char *argv[] array of ptrs
             printf("read and validate is failure\n");
         }
     }
-    // e_decode
+    else if (res == e_decode)
+    {
+        DecodeInfo decInfo;
 
-    // e_unsupported
-    //  print error msg and stop the program
+        if (read_and_validate_decode_args(argv, &decInfo) != e_success)
+        {
+            printf("Please Enter Valid Decoding Arguments\n");
+            return 0;
+        }
+
+        if (open_decode_files(&decInfo) == e_success)
+        {
+            if (decode_magic_string(MAGIC_STRING, &decInfo) == e_success)
+            {
+                decode_secret_file_extn_size(&decInfo);
+                decode_secret_file_extn(&decInfo);
+                decode_secret_file_size(&decInfo);
+                decode_secret_file_data(&decInfo);
+
+                printf("Decoding completed successfully into %s\n",
+                       decInfo.output_fname);
+            }
+            else
+            {
+                printf("Magic string mismatch.\n");
+            }
+        }
+        else
+        {
+            printf("Unable to open files.\n");
+        }
+    }
+    else{
+
+        printf("Invalid arguments have been entered");
+        return 0;
+    }
+    
 }
 
 OperationType check_operation_type(char *symbol)

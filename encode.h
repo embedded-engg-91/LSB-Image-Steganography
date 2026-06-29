@@ -6,7 +6,7 @@
 
 /*
  * Structure to store information required for
- * encoding secret file to source Image
+ * encoding secret file to source dImage
  * Info about output and intermediate data is
  * also stored
  */
