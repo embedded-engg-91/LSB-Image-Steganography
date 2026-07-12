@@ -188,26 +188,6 @@ Status encode_secret_file_size(long file_size, EncodeInfo *encInfo)
     return e_success;
 }
 
-// Status encode_secret_file_data(EncodeInfo *encInfo)
-// {
-//     // copy secret data to src img using byte to lsb fun
-//     // for each byte we need to encode
-//     // copy byte,encode, then write onto file
-//     rewind(encInfo->fptr_secret);
-
-//     for (int i = 0; i < strlen(encInfo->secret_data); i++)
-//     {
-//         char buffer[8];
-//         char ch = fgetc(encInfo->fptr_secret); // read one charcter from the secret file
-//         fread(buffer, 1, 8, encInfo->fptr_src_image);
-//         encode_byte_to_lsb(ch, buffer); // send that char for encoding
-//         fwrite(buffer, 1, 8, encInfo->fptr_stego_image);
-//     }
-
-//     return e_success;
-// }
-
-
 Status encode_secret_file_data(EncodeInfo *encInfo)
 {
     rewind(encInfo->fptr_secret);
