@@ -19,7 +19,7 @@ uint get_image_size_for_bmp(FILE *fptr_image)
     printf("height = %u\n", height);
 
     // Return image capacity
-    return width * height * 3; // beacuse 1 pixel = 3bytes each of r,g,b
+    return width * height * 3; 
 }
 
 uint get_file_size(FILE *fptr)
