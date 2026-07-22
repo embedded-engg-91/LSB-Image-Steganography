@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 {
 
     OperationType res = check_operation_type(argv[1]); 
-    // e_encode
     if (res == e_encode)
     {
         // EncodeInfo encInfo;
