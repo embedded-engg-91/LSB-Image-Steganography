@@ -96,17 +96,15 @@ Status open_files(EncodeInfo *encInfo)
         return e_failure;
     }
 
-    // No failure return e_success
     return e_success;
 }
 
 Status check_capacity(EncodeInfo *encInfo)
 {
-    // see if have enough rgb data to encode
     encInfo->image_capacity = get_image_size_for_bmp(encInfo->fptr_src_image); 
     encInfo->size_secret_file = get_file_size(encInfo->fptr_secret);           
     if (encInfo->image_capacity > (16 + 32 + 32 + 32 + ((encInfo->size_secret_file) * 8) + 54))
-    { // check for capacity
+    { 
         return e_success;
     }
     printf("The original file doesnt have enough data to encode the secret message.\n");
@@ -196,7 +194,7 @@ Status encode_byte_to_lsb(char data, char *image_buffer)
    
     for (int i = 0; i < 8; i++)
     {
-        // get =num& mask
+        
         int bit = (data >> (7 - i)) & 1;        
         image_buffer[i] = image_buffer[i] & ~1;  
         image_buffer[i] = image_buffer[i] | bit; 
@@ -208,7 +206,6 @@ Status encode_size_to_lsb(int size, char *imageBuffer)
 {
     for (int i = 0; i < 32; i++)
     {
-        // get =num& mask
         int bit = (size >> (31 - i)) & 1;      
         imageBuffer[i] = imageBuffer[i] & ~1;  
         imageBuffer[i] = imageBuffer[i] | bit;
@@ -228,7 +225,6 @@ Status do_encoding(EncodeInfo *encInfo)
         return e_failure;
     }
 
-    // call check capacity funcgio
     if (check_capacity(encInfo) == e_success)
     {
         printf("File has enough capacity for encoding.\n");
