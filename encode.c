@@ -25,9 +25,8 @@ uint get_image_size_for_bmp(FILE *fptr_image)
 uint get_file_size(FILE *fptr)
 {
     // Find the size of secret file data
-    // make fptr set to eof
     fseek(fptr, 0, SEEK_END); 
-    return ftell(fptr);       // return secret file size
+    return ftell(fptr);       
 }
 
 
