@@ -184,7 +184,6 @@ Status encode_secret_file_data(EncodeInfo *encInfo)
 }
 Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
 {
-    // just copy from ptr src to ddest
     int ch;                              
     while ((ch = fgetc(fptr_src)) != EOF) 
     {
@@ -195,15 +194,7 @@ Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest)
 
 Status encode_byte_to_lsb(char data, char *image_buffer)
 {
-    // 1 byte  8 bytes encode using buffer
-    // run loop 8 times
-    // get lsb bit
-    // and replace
-    // from msb to lsb
-
-    // get the msb of data
-    // clear the lsb of image buffer
-    // add that msb data to lsb
+   
     for (int i = 0; i < 8; i++)
     {
         // get =num& mask
@@ -216,13 +207,6 @@ Status encode_byte_to_lsb(char data, char *image_buffer)
 
 Status encode_size_to_lsb(int size, char *imageBuffer)
 {
-    // at once 32 bits loop for 0 to 32
-    // 1 bit 8 vytes encide using buffer
-    // run loop 32 times
-    // get lsb bit
-    // and replace
-    // from msb to lsb
-
     for (int i = 0; i < 32; i++)
     {
         // get =num& mask
