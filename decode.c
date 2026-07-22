@@ -6,7 +6,7 @@
 
 Status read_and_validate_decode_args(char *argv[], DecodeInfo *decInfo)
 {
-    if (strstr(argv[2], ".bmp") == NULL) //check for stego .bmp
+    if (strstr(argv[2], ".bmp") == NULL) 
         return e_failure;
 
     decInfo->stego_image_fname = argv[2]; 
@@ -24,9 +24,9 @@ Status read_and_validate_decode_args(char *argv[], DecodeInfo *decInfo)
         char *dot = strrchr(output_file, '.');
 
         if (dot != NULL)
-            *dot = '\0'; //at the pos of '.' put null so that we get filename irresepective of extension
+            *dot = '\0'; 
 
-        strcat(output_file, ".txt"); //concatenate the name with.txt for output
+        strcat(output_file, ".txt"); 
     }
 
     decInfo->output_fname = output_file; //store it 
@@ -79,7 +79,7 @@ Status decode_magic_string(const char *magic, DecodeInfo *decInfo)
 {
     char buffer[8];
 
-    fseek(decInfo->fptr_stego_image, 54, SEEK_SET); //skip the 54 bytes of header
+    fseek(decInfo->fptr_stego_image, 54, SEEK_SET); 
 
     for (int i = 0; i < strlen(magic); i++)
     {
