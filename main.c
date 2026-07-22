@@ -9,15 +9,14 @@ OperationType check_operation_type(char *);
 
 int main(int argc, char *argv[]) // int argc, char *argv[] array of ptrs
 {
-    // read inputs from user(option, source_file, secret_file)with extn
 
     OperationType res = check_operation_type(argv[1]); // check this
     // e_encode
     if (res == e_encode)
     {
         // EncodeInfo encInfo;
-        EncodeInfo encInfo;                                             // created a struct var
-        if (read_and_validate_encode_args(argv, &encInfo) == e_success) // in first argu need to pass entire args list
+        EncodeInfo encInfo;                                            
+        if (read_and_validate_encode_args(argv, &encInfo) == e_success) 
         {
             if (do_encoding(&encInfo) == e_success)
             {
@@ -75,9 +74,7 @@ int main(int argc, char *argv[]) // int argc, char *argv[] array of ptrs
 
 OperationType check_operation_type(char *symbol)
 {
-    // step 1 -> check symbol is -e or -d
-    //  -e -> return e_encode
-    // - d -> return e_decode
+   
     if (!(strcmp(symbol, "-e")))
     { //*symbol=='-e' dont do this ciz its 2 chars not 1
         return e_encode;
@@ -88,5 +85,4 @@ OperationType check_operation_type(char *symbol)
     }
     return e_unsupported;
 
-    // return e_unsupported
 }
