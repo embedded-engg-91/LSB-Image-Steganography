@@ -25,8 +25,6 @@ typedef struct _EncodeInfo
 
 } EncodeInfo;
 
-/* Encoding function prototype */
-
 /* Read and validate Encode args from argv */
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
 
