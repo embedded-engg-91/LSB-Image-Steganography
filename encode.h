@@ -15,7 +15,7 @@ typedef struct _EncodeInfo
 {
     /* Source Image info */
     char *src_image_fname;
-    FILE *fptr_src_image; // src fpte_src
+    FILE *fptr_src_image; 
     uint image_capacity;
 
     /* Secret File Info */
@@ -27,7 +27,7 @@ typedef struct _EncodeInfo
 
     /* Stego Image Info */
     char *stego_image_fname;
-    FILE *fptr_stego_image; // dest ptr
+    FILE *fptr_stego_image; 
 
 } EncodeInfo;
 
