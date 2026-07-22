@@ -76,11 +76,11 @@ OperationType check_operation_type(char *symbol)
 {
    
     if (!(strcmp(symbol, "-e")))
-    { //*symbol=='-e' dont do this ciz its 2 chars not 1
+    { 
         return e_encode;
     }
     else if (!(strcmp(symbol, "-d")))
-    { // note strcmp returns zzero on succes so must use ! here
+    { 
         return e_decode;
     }
     return e_unsupported;
